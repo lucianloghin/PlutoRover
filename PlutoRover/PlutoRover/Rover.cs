@@ -20,32 +20,9 @@
             {
                 this.MoveX();
             }
-            else if (this.YShouldChange())
-            {
-                this.MoveYBackward();
-            }
             else
             {
-                if (step == MoveDirection.Backward)
-                {
-                    this.MoveYBackward();
-                }
-                else
-                {
-                    this.MoveYForward();
-                }
-            }
-        }
-
-        private void MoveX()
-        {
-            if (this.CurrentPosition.Orientation == Orientation.East)
-            {
-                this.position.X += 1;
-            }
-            else
-            {
-                this.position.X -= 1;
+                this.MoveY(step);
             }
         }
 
@@ -62,26 +39,35 @@
             }
         }
 
-        // TODO : find better names
-        private bool YShouldChange()
-        {
-            return this.position.Orientation == Orientation.South;
-        }
-
         private bool XShouldChange()
         {
             return this.position.Orientation == Orientation.East ||
                    this.position.Orientation == Orientation.West;
         }
 
-        private void MoveYForward()
+        private void MoveY(char direction)
         {
-            this.position.Y += 1;
+            if (direction == MoveDirection.Forward &&
+                this.CurrentPosition.Orientation == Orientation.North)
+            {
+                this.position.Y += 1;
+            }
+            else
+            {
+                this.position.Y -= 1;
+            }
         }
 
-        private void MoveYBackward()
+        private void MoveX()
         {
-            this.position.Y -= 1;
+            if (this.CurrentPosition.Orientation == Orientation.East)
+            {
+                this.position.X += 1;
+            }
+            else
+            {
+                this.position.X -= 1;
+            }
         }
     }
 }
