@@ -24,11 +24,11 @@
             {
                 if (step == MoveDirection.Backward)
                 {
-                    this.position.Y -= 1;
+                    this.MoveBackward();
                 }
                 else
                 {
-                    this.position.Y = 1;
+                    this.MoveForward();
                 }
             }
         }
@@ -44,6 +44,16 @@
             {
                 this.position.Orientation = Orientation.South;
             }
+        }
+
+        private void MoveForward()
+        {
+            this.position.Y += 1;
+        }
+
+        private void MoveBackward()
+        {
+            this.position.Y -= 1;
         }
     }
 }

@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WhenMovingBackwardPositionChangesFrom.cs" />
+    <Compile Include="WhenMovingRoverOrientationDoesNotChange.cs" />
     <Compile Include="WhenRunningSomeTests.cs" />
     <Compile Include="WhenTurningRoverFrom.cs" />
   </ItemGroup>
