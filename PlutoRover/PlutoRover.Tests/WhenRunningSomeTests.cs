@@ -59,6 +59,17 @@ namespace PlutoRover.Tests
             Assert.AreEqual(initialPosition.Orientation, rover.CurrentPosition.Orientation);
         }
 
+        [Test]
+        public void FiveFiveAndFacingNorthWhenMovingBackwardThenYIsFour()
+        {
+            Position initialPosition = new Position(5, 5, Orientation.North);
+
+            Rover rover = new Rover(initialPosition);
+            rover.Move(MoveDirection.Backward);
+
+            Assert.AreEqual(4, rover.CurrentPosition.Y);
+        }
+
         // current tests: 
         // 0, 0, N => command is move F => 0, 1, N
         // 0, 0, E => command is move F => 1, 0, E
