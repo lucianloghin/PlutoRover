@@ -14,63 +14,72 @@ namespace PlutoRover.Tests
     {
         // Pluto is a grid
         // rover will have an initial position
-        // F - forward
-        // B - backwards
         // L - turn left
         // R - turn right
 
         [Test]
         public void ZeroZeroAndFacingNorthWhenMovingForwardThenYIsOne()
         {
-            int initialX = 0;
-            int initialY = 0;
-            string initialOrientation = "N";
+            Position initialPosition = new Position(0, 0, "N");
             char moveForwardStep = 'F'; 
 
-            Rover rover = new Rover(initialX, initialY, initialOrientation);
+            Rover rover = new Rover(initialPosition);
             rover.Move(moveForwardStep);
 
-            Assert.AreEqual(rover.Y, 1);
+            Assert.AreEqual(rover.CurrentPosition.Y, 1);
         }
 
         [Test]
         public void ZeroZeroAndFacingEastWhenMovingForwardThenXIsOne()
         {
-            int initialX = 0;
-            int initialY = 0;
-            string initialOrientation = "E";
+            Position initialPosition = new Position(0, 0, "E");
             char moveForwardStep = 'F';
 
-            Rover rover = new Rover(initialX, initialY, initialOrientation);
+            Rover rover = new Rover(initialPosition);
             rover.Move(moveForwardStep);
 
-            Assert.AreEqual(rover.X, 1);
+            Assert.AreEqual(rover.CurrentPosition.X, 1);
         }
     }
 
     public class Rover
     {
-        public Rover(int x, int y, string orientation)
+        private readonly Position position;
+
+        public Rover(Position position)
+        {
+            this.position = position;
+        }
+
+        public Position CurrentPosition
+        {
+            get { return this.position; }
+        }
+
+        public void Move(char step)
+        {
+            if (this.position.Orientation == "E")
+            {
+                this.position.X = 1;
+            }
+            else
+            {
+                this.position.Y = 1;
+            }
+        }
+    }
+
+    public class Position
+    {
+        public Position(int x, int y, string orientation)
         {
             this.X = x;
             this.Y = y;
             this.Orientation = orientation;
         }
 
-        public int Y { get; private set; }
-        public int X { get; private set; }
-        public string Orientation { get; private set; }
-
-        public void Move(char step)
-        {
-            if (this.Orientation == "E")
-            {
-                this.X = 1;
-            }
-            else
-            {
-                this.Y = 1;
-            }
-        }
+        public int Y { get; set; }
+        public int X { get; set; }
+        public string Orientation { get; set; }
     }
 }
