@@ -40,6 +40,18 @@ namespace PlutoRover.Tests
 
             Assert.AreEqual(rover.CurrentPosition.X, 1);
         }
+
+        [Test]
+        public void ZeroZeroAndFacingEastWhenTurningRightThenOrientationIsSouth()
+        {
+            Position initialPosition = new Position(0, 0, "E");
+            char turnDirection = 'R';
+
+            Rover rover = new Rover(initialPosition);
+            rover.Turn(turnDirection);
+
+            Assert.AreEqual(rover.CurrentPosition.Orientation, "S");
+        }
     }
 
     public class Rover
@@ -66,6 +78,11 @@ namespace PlutoRover.Tests
             {
                 this.position.Y = 1;
             }
+        }
+
+        // not sure if we would have two different methods, will see how this evolves
+        public void Turn(char turnDirection)
+        {
         }
     }
 
