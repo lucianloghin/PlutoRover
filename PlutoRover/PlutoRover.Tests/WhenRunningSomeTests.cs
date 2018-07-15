@@ -32,6 +32,20 @@ namespace PlutoRover.Tests
 
             Assert.AreEqual(rover.Y, 1);
         }
+
+        [Test]
+        public void ZeroZeroAndFacingEastWhenMovingForwardThenXIsOne()
+        {
+            int initialX = 0;
+            int initialY = 0;
+            string initialOrientation = "E";
+            char moveForwardStep = 'F';
+
+            Rover rover = new Rover(initialX, initialY, initialOrientation);
+            rover.Move(moveForwardStep);
+
+            Assert.AreEqual(rover.X, 1);
+        }
     }
 
     public class Rover
