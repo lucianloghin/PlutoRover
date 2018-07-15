@@ -16,11 +16,9 @@
 
         public void Move(char step)
         {
-            // don't have enough scenarios to refactor this, functionality is incomplete
-            // most probably this should be rewritten after having more unit tests
             if (this.XShouldChange())
             {
-                this.MoveXForward();
+                this.MoveX();
             }
             else if (this.YShouldChange())
             {
@@ -39,9 +37,16 @@
             }
         }
 
-        private void MoveXForward()
+        private void MoveX()
         {
-            this.position.X += 1;
+            if (this.CurrentPosition.Orientation == Orientation.East)
+            {
+                this.position.X += 1;
+            }
+            else
+            {
+                this.position.X -= 1;
+            }
         }
 
         // not sure if we would have two different methods, will see how this evolves
@@ -65,7 +70,8 @@
 
         private bool XShouldChange()
         {
-            return this.position.Orientation == Orientation.East;
+            return this.position.Orientation == Orientation.East ||
+                   this.position.Orientation == Orientation.West;
         }
 
         private void MoveYForward()
