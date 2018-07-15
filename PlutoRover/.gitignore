@@ -7,4 +7,5 @@
 *.user
 .vs/*
 */obj/*
+*/bin/*
 *packages/*
