@@ -8,8 +8,9 @@ using NUnit.Framework;
 
 namespace PlutoRover.Tests
 {
+    // File name intentionally wasn't changed
     [TestFixture]
-    public class WhenRunningSomeTests
+    public class WhenMovingRoverFromPosition
     {
         // Pluto is a grid
         // rover will have an initial position
@@ -19,15 +20,15 @@ namespace PlutoRover.Tests
         // R - turn right
 
         [Test]
-        public void DoSomeStuff()
+        public void ZeroZeroAndFacingNorthThenYIsOne()
         {
             int initialX = 0;
             int initialY = 0;
-            string orientation = "N";
-            char step = 'F'; 
+            string initialOrientation = "N";
+            char moveForwardStep = 'F'; 
 
-            Rover rover = new Rover(initialX, initialY, orientation);
-            rover.Move(step);
+            Rover rover = new Rover(initialX, initialY, initialOrientation);
+            rover.Move(moveForwardStep);
 
             Assert.AreEqual(rover.Y, 1);
         }
@@ -35,18 +36,16 @@ namespace PlutoRover.Tests
 
     public class Rover
     {
-        private int x;
-        private int y;
-        private string orientation;
-
         public Rover(int x, int y, string orientation)
         {
-            this.x = x;
-            this.y = y;
-            this.orientation = orientation;
+            this.X = x;
+            this.Y = y;
+            this.Orientation = orientation;
         }
 
-        public int Y { get; set; }
+        public int Y { get; private set; }
+        public int X { get; private set; }
+        public string Orientation { get; private set; }
 
         public void Move(char step)
         {
