@@ -20,7 +20,7 @@ namespace PlutoRover.Tests
         // R - turn right
 
         [Test]
-        public void ZeroZeroAndFacingNorthThenYIsOne()
+        public void ZeroZeroAndFacingNorthWhenMovingForwardThenYIsOne()
         {
             int initialX = 0;
             int initialY = 0;
