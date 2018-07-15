@@ -20,6 +20,10 @@
             {
                 this.position.X = 1;
             }
+            else if (this.position.Orientation == Orientation.South)
+            {
+                this.position.Y -= 1;
+            }
             else
             {
                 if (step == MoveDirection.Backward)
