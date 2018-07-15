@@ -14,17 +14,14 @@ namespace PlutoRover.Tests
     {
         // Pluto is a grid
         // rover will have an initial position
-        // L - turn left
-        // R - turn right
 
         [Test]
         public void ZeroZeroAndFacingNorthWhenMovingForwardThenYIsOne()
         {
-            Position initialPosition = new Position(0, 0, 'N');
-            char moveForwardStep = 'F'; 
-
+            Position initialPosition = new Position(0, 0, Orientation.North);
+            
             Rover rover = new Rover(initialPosition);
-            rover.Move(moveForwardStep);
+            rover.Move(MoveDirection.Forward);
 
             Assert.AreEqual(1, rover.CurrentPosition.Y);
         }
@@ -32,11 +29,10 @@ namespace PlutoRover.Tests
         [Test]
         public void ZeroZeroAndFacingEastWhenMovingForwardThenXIsOne()
         {
-            Position initialPosition = new Position(0, 0, 'E');
-            char moveForwardStep = 'F';
+            Position initialPosition = new Position(0, 0, Orientation.East);
 
             Rover rover = new Rover(initialPosition);
-            rover.Move(moveForwardStep);
+            rover.Move(MoveDirection.Forward);
 
             Assert.AreEqual(1, rover.CurrentPosition.X);
         }
@@ -44,26 +40,32 @@ namespace PlutoRover.Tests
         [Test]
         public void ZeroZeroAndFacingEastWhenTurningRightThenOrientationIsSouth()
         {
-            Position initialPosition = new Position(0, 0, 'E');
-            char turnDirection = 'R';
+            Position initialPosition = new Position(0, 0, Orientation.East);
 
             Rover rover = new Rover(initialPosition);
-            rover.Turn(turnDirection);
+            rover.Turn(TurnDirection.Righ);
 
-            Assert.AreEqual('S', rover.CurrentPosition.Orientation);
+            Assert.AreEqual(Orientation.South, rover.CurrentPosition.Orientation);
         }
 
         [Test]
         public void ZeroZeroAndFacingEastWhenTurningLeftThenOrientationIsNorth()
         {
-            Position initialPosition = new Position(0, 0, 'E');
-            char turnDirection = 'L';
-
+            Position initialPosition = new Position(0, 0, Orientation.East);
+            
             Rover rover = new Rover(initialPosition);
-            rover.Turn(turnDirection);
+            rover.Turn(TurnDirection.Left);
 
-            Assert.AreEqual('N', rover.CurrentPosition.Orientation);
+            Assert.AreEqual(Orientation.North, rover.CurrentPosition.Orientation);
         }
+
+        // current tests: 
+        // 0, 0, N => command is move F => 0, 1, N
+        // 0, 0, E => command is move F => 1, 0, E => don't have assertion that orientation is the same
+        // 0, 0, E => command is turn R => 0, 0, S => don't have assertion that position didn't change
+        // 0, 0, E => command is turn L => 0, 0, N => same as above
+        // tests to write for completion:
+        // more to go
     }
 
     public class Rover
@@ -82,7 +84,7 @@ namespace PlutoRover.Tests
 
         public void Move(char step)
         {
-            if (this.position.Orientation == 'E')
+            if (this.position.Orientation == Orientation.East)
             {
                 this.position.X = 1;
             }
@@ -95,13 +97,13 @@ namespace PlutoRover.Tests
         // not sure if we would have two different methods, will see how this evolves
         public void Turn(char turnDirection)
         {
-            if (turnDirection == 'L')
+            if (turnDirection == TurnDirection.Left)
             {
-                this.position.Orientation = 'N';
+                this.position.Orientation = Orientation.North;
             }
             else
             {
-                this.position.Orientation = 'S';
+                this.position.Orientation = Orientation.South;
             }
         }
     }
@@ -118,5 +120,24 @@ namespace PlutoRover.Tests
         public int Y { get; set; }
         public int X { get; set; }
         public char Orientation { get; set; }
+    }
+
+    public static class Orientation
+    {
+        public const char North = 'N';
+        public const char East = 'E';
+        public const char South = 'S';
+    }
+
+    public static class TurnDirection
+    {
+        public const char Left = 'L';
+        public const char Righ = 'R';
+    }
+
+    public static class MoveDirection
+    {
+        public const char Forward = 'F';
+        public const char Backward = 'B';
     }
 }
