@@ -22,7 +22,14 @@
             }
             else
             {
-                this.position.Y = 1;
+                if (step == MoveDirection.Backward)
+                {
+                    this.position.Y -= 1;
+                }
+                else
+                {
+                    this.position.Y = 1;
+                }
             }
         }
 
