@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Castle.Components.DictionaryAdapter.Xml;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace PlutoRover.Tests
 {
@@ -13,8 +7,7 @@ namespace PlutoRover.Tests
     public class WhenMovingForwardPositionChangesFrom
     {
         // Pluto is a grid
-        // rover will have an initial position
-
+        
         [Test]
         public void ZeroZeroAndFacingNorthThenYIsOne()
         {
