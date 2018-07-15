@@ -37,11 +37,33 @@ namespace PlutoRover.Tests
             Assert.AreEqual(1, rover.CurrentPosition.X);
         }
 
+        [Test]
+        public void ZeroZeroAndFacingNorthWhenMovingForwardThenOrientationDoesNotChange()
+        {
+            Position initialPosition = new Position(0, 0, Orientation.North);
+
+            Rover rover = new Rover(initialPosition);
+            rover.Move(MoveDirection.Forward);
+
+            Assert.AreEqual(initialPosition.Orientation, rover.CurrentPosition.Orientation);
+        }
+
+        [Test]
+        public void ZeroZeroAndFacingEastWhenMovingForwardThenOrientationDoesNotChange()
+        {
+            Position initialPosition = new Position(0, 0, Orientation.East);
+
+            Rover rover = new Rover(initialPosition);
+            rover.Move(MoveDirection.Forward);
+
+            Assert.AreEqual(initialPosition.Orientation, rover.CurrentPosition.Orientation);
+        }
+
         // current tests: 
         // 0, 0, N => command is move F => 0, 1, N
-        // 0, 0, E => command is move F => 1, 0, E => don't have assertion that orientation is the same
-        // 0, 0, E => command is turn R => 0, 0, S => don't have assertion that position didn't change
-        // 0, 0, E => command is turn L => 0, 0, N => same as above
+        // 0, 0, E => command is move F => 1, 0, E
+        // 0, 0, E => command is turn R => 0, 0, S
+        // 0, 0, E => command is turn L => 0, 0, N
         // tests to write for completion:
         // more to go
     }
