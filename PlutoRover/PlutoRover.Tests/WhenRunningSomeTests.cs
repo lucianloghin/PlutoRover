@@ -20,37 +20,37 @@ namespace PlutoRover.Tests
         [Test]
         public void ZeroZeroAndFacingNorthWhenMovingForwardThenYIsOne()
         {
-            Position initialPosition = new Position(0, 0, "N");
+            Position initialPosition = new Position(0, 0, 'N');
             char moveForwardStep = 'F'; 
 
             Rover rover = new Rover(initialPosition);
             rover.Move(moveForwardStep);
 
-            Assert.AreEqual(rover.CurrentPosition.Y, 1);
+            Assert.AreEqual(1, rover.CurrentPosition.Y);
         }
 
         [Test]
         public void ZeroZeroAndFacingEastWhenMovingForwardThenXIsOne()
         {
-            Position initialPosition = new Position(0, 0, "E");
+            Position initialPosition = new Position(0, 0, 'E');
             char moveForwardStep = 'F';
 
             Rover rover = new Rover(initialPosition);
             rover.Move(moveForwardStep);
 
-            Assert.AreEqual(rover.CurrentPosition.X, 1);
+            Assert.AreEqual(1, rover.CurrentPosition.X);
         }
 
         [Test]
         public void ZeroZeroAndFacingEastWhenTurningRightThenOrientationIsSouth()
         {
-            Position initialPosition = new Position(0, 0, "E");
+            Position initialPosition = new Position(0, 0, 'E');
             char turnDirection = 'R';
 
             Rover rover = new Rover(initialPosition);
             rover.Turn(turnDirection);
 
-            Assert.AreEqual(rover.CurrentPosition.Orientation, "S");
+            Assert.AreEqual('S', rover.CurrentPosition.Orientation);
         }
     }
 
@@ -70,7 +70,7 @@ namespace PlutoRover.Tests
 
         public void Move(char step)
         {
-            if (this.position.Orientation == "E")
+            if (this.position.Orientation == 'E')
             {
                 this.position.X = 1;
             }
@@ -83,13 +83,13 @@ namespace PlutoRover.Tests
         // not sure if we would have two different methods, will see how this evolves
         public void Turn(char turnDirection)
         {
-            this.position.Orientation = "S";
+            this.position.Orientation = 'S';
         }
     }
 
     public class Position
     {
-        public Position(int x, int y, string orientation)
+        public Position(int x, int y, char orientation)
         {
             this.X = x;
             this.Y = y;
@@ -98,6 +98,6 @@ namespace PlutoRover.Tests
 
         public int Y { get; set; }
         public int X { get; set; }
-        public string Orientation { get; set; }
+        public char Orientation { get; set; }
     }
 }
