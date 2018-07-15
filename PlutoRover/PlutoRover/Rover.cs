@@ -18,7 +18,7 @@
         {
             if (this.XShouldChange())
             {
-                this.MoveX();
+                this.MoveX(step);
             }
             else
             {
@@ -58,9 +58,10 @@
             }
         }
 
-        private void MoveX()
+        private void MoveX(char direction)
         {
-            if (this.CurrentPosition.Orientation == Orientation.East)
+            if (direction == MoveDirection.Forward &&
+                this.CurrentPosition.Orientation == Orientation.East)
             {
                 this.position.X += 1;
             }
