@@ -95,7 +95,14 @@ namespace PlutoRover.Tests
         // not sure if we would have two different methods, will see how this evolves
         public void Turn(char turnDirection)
         {
-            this.position.Orientation = 'S';
+            if (turnDirection == 'L')
+            {
+                this.position.Orientation = 'N';
+            }
+            else
+            {
+                this.position.Orientation = 'S';
+            }
         }
     }
 
