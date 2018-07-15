@@ -37,5 +37,16 @@ namespace PlutoRover.Tests
 
             Assert.AreEqual(1, rover.CurrentPosition.Y);
         }
+
+        [Test]
+        public void OneOneAndFacingWestThenXIsZero()
+        {
+            Position initialPosition = new Position(1, 1, Orientation.West);
+
+            Rover rover = new Rover(initialPosition);
+            rover.Move(MoveDirection.Backward);
+
+            Assert.AreEqual(2, rover.CurrentPosition.X);
+        }
     }
 }
