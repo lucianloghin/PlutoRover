@@ -50,6 +50,7 @@ namespace PlutoRover.Tests
 
         public void Move(char step)
         {
+            this.Y = 1;
         }
     }
 }
