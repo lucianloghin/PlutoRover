@@ -47,8 +47,11 @@
 
         private void MoveY(char direction)
         {
+            // extract condition logic
             if (direction == MoveDirection.Forward &&
-                this.CurrentPosition.Orientation == Orientation.North)
+                this.CurrentPosition.Orientation == Orientation.North ||
+                direction == MoveDirection.Backward &&
+                this.CurrentPosition.Orientation == Orientation.South)
             {
                 this.position.Y += 1;
             }
