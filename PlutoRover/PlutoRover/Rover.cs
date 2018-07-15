@@ -63,8 +63,11 @@
 
         private void MoveX(char direction)
         {
+            // extract condition logic
             if (direction == MoveDirection.Forward &&
-                this.CurrentPosition.Orientation == Orientation.East)
+                this.CurrentPosition.Orientation == Orientation.East ||
+                direction == MoveDirection.Backward &&
+                this.CurrentPosition.Orientation == Orientation.West)
             {
                 this.position.X += 1;
             }
