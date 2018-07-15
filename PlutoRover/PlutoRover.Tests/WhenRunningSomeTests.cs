@@ -63,7 +63,14 @@ namespace PlutoRover.Tests
 
         public void Move(char step)
         {
-            this.Y = 1;
+            if (this.Orientation == "E")
+            {
+                this.X = 1;
+            }
+            else
+            {
+                this.Y = 1;
+            }
         }
     }
 }
