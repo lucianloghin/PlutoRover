@@ -16,25 +16,32 @@
 
         public void Move(char step)
         {
-            if (this.position.Orientation == Orientation.East)
+            // don't have enough scenarios to refactor this, functionality is incomplete
+            // most probably this should be rewritten after having more unit tests
+            if (this.XShouldChange())
             {
-                this.position.X = 1;
+                this.MoveXForward();
             }
-            else if (this.position.Orientation == Orientation.South)
+            else if (this.YShouldChange())
             {
-                this.position.Y -= 1;
+                this.MoveYBackward();
             }
             else
             {
                 if (step == MoveDirection.Backward)
                 {
-                    this.MoveBackward();
+                    this.MoveYBackward();
                 }
                 else
                 {
-                    this.MoveForward();
+                    this.MoveYForward();
                 }
             }
+        }
+
+        private void MoveXForward()
+        {
+            this.position.X += 1;
         }
 
         // not sure if we would have two different methods, will see how this evolves
@@ -50,12 +57,23 @@
             }
         }
 
-        private void MoveForward()
+        // TODO : find better names
+        private bool YShouldChange()
+        {
+            return this.position.Orientation == Orientation.South;
+        }
+
+        private bool XShouldChange()
+        {
+            return this.position.Orientation == Orientation.East;
+        }
+
+        private void MoveYForward()
         {
             this.position.Y += 1;
         }
 
-        private void MoveBackward()
+        private void MoveYBackward()
         {
             this.position.Y -= 1;
         }
