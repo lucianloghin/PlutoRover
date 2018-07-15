@@ -61,9 +61,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WhenRunningSomeTests.cs" />
+    <Compile Include="WhenTurningRoverFrom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlutoRover\PlutoRover.csproj">
+      <Project>{d91e3280-c57a-4877-b9a0-a1e329f27693}</Project>
+      <Name>PlutoRover</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
